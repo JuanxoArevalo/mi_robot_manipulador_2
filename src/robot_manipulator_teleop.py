@@ -67,7 +67,8 @@ def key_press(key):
 
 def talker():
     global vel
-    global velmax = 0
+    global velmax
+    velmax=0
     global msg
 
 
