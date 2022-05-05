@@ -35,7 +35,7 @@ def key_press(key):
     if key.event_type == "down":
         if key.name == "r":
             dir=-1*dir
-    
+
         elif key.name == "1":
             msg.data = str(dir)+",a"
             getPos()
@@ -56,27 +56,27 @@ def key_press(key):
         if key.name == "1":
             msg.data=0
         elif key.name == "2":
-            msg.data=0 
+            msg.data=0
         elif key.name == "3":
-            msg.data=0 
+            msg.data=0
         elif key.name == "4":
-            msg.data=0  
+            msg.data=0
         elif key.name == "r":
             dir=dir
 
 
 def talker():
     global vel
-    global velmax
+    global velmax = 0
     global msg
-    
-    
-    vel = int(input('Ingrese la velociadad deseada: '+"[0-"+str(int(velmax))+"](cm/s):"))
-    
+
+
+    vel = int(input('Ingrese la velocidad deseada: '+"[0-"+str(int(velmax))+"](cm/s):"))
+
 
 
     rospy.init_node('robot_manipulator_teleop', anonymous=True)
-    pub = rospy.Publisher('/robot_manipulator_move', String, queue_size=10)
+    pub = rospy.Publisher('/robot_cmdVel', String, queue_size=10)
     rate = rospy.Rate(10) #10Hz
 
     keyboard.hook(key_press)
