@@ -67,8 +67,8 @@ def moveMotor(motor,dire):
             angulo =0
         if angulo > 180:
             angulo =180
-
-        servoA.value=convertirAngulo(angulo)
+        if angulo!= ActualA:
+            servoA.value=convertirAngulo(angulo)
     if motor== 'b':
 
         angulo=ActualB+dire*(dif)
@@ -78,8 +78,8 @@ def moveMotor(motor,dire):
             angulo =0
         if angulo > 180:
             angulo =180
-
-        servoB.value=convertirAngulo(angulo)
+        if angulo!= ActualB:
+            servoB.value=convertirAngulo(angulo)
     if motor== 'c':
 
         angulo=ActualC+dire*(dif)
@@ -89,8 +89,10 @@ def moveMotor(motor,dire):
             angulo =0
         if angulo > 180:
             angulo =180
+        if angulo!= ActualC:
+            servoC.value=convertirAngulo(angulo)
 
-        servoC.value=convertirAngulo(angulo)
+
     if motor== 'd':
 
         angulo=ActualD+dire*(dif)
@@ -101,9 +103,8 @@ def moveMotor(motor,dire):
         if angulo > 180:
             angulo =180
 
-        servoD.value=convertirAngulo(angulo)
-
-
+        if angulo!= ActualD:
+            servoD.value=convertirAngulo(angulo)
 
 def listener():
 
