@@ -4,7 +4,7 @@ import rospy
 from geometry_msgs.msg import Twist
 from std_msgs.msg import String
 #import RPi.GPIO as GPIO
-from gpiozero import Servo
+from gpiozero import AngularServo
 
 # Angulos iniciales de cada motor
 global dif
@@ -32,7 +32,7 @@ myCorrection=0.45
 maxPW=(2.0+myCorrection)/1000
 minPW=(1.0-myCorrection)/1000
 
-servoA = Servo(myGPIO1,min_pulse_width=minPW,max_pulse_width=maxPW)
+servoA = AngularServo(myGPIO1,0,180)
 #servoA.value=None
 #servoB = Servo(myGPIO2,min_pulse_width=minPW,max_pulse_width=maxPW)
 #servoC = Servo(myGPIO3,min_pulse_width=minPW,max_pulse_width=maxPW)
@@ -95,7 +95,7 @@ def moveMotor(motor,dire):
         ActualA=angulo
         print(convertirAngulo(angulo))
         #servoA = Servo(25,min_pulse_width=minPW,max_pulse_width=maxPW)
-        servoA.value=convertirAngulo(angulo)
+        servoA.value=angulo
         #servoA.value=None
     if motor== 'b':
 
