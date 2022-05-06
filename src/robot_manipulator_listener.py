@@ -13,14 +13,14 @@ InicialB=0
 InicialC=0
 InicialD=0
 
-# Definicion de los servos 
+# Definicion de los servos
 
 servoA = Servo(25)
 servoB = Servo(24)
 servoC = Servo(23)
 servoD = Servo(22)
 
-# Angulo de cada paso 
+# Angulo de cada paso
 
 dif=2
 
@@ -33,34 +33,34 @@ ActualD=InicialD
 
 # lee la informacion de teleop
 def callback_read(data):
-    
+
     dato = data.data
     datos=dato.split(',')
-    
+
     #Direcion de giro
-    
+
     dir=int(datos[1])*dif
-    
+
     # Motor
-    
+
     motor=datos[0]
     moveMotor(motor,dir)
 
 # Convierte el angulo a un valor valido entre -1 y 1
 
 def convertirAngulo(angulo):
-     
+
     return (-1+(angulo*(1/90)))
 
-# Mueve el motor a un angulo 
+# Mueve el motor a un angulo
 
 def moveMotor(motor,dir):
 
     if motor== 'a':
-        
+
         angulo=ActualA+dir*(dif)
         ActualA=angulo
-        
+
         if angulo < 0:
             angulo =0
         if angulo > 180:
@@ -68,7 +68,7 @@ def moveMotor(motor,dir):
 
         servoA.value=convertirAngulo(angulo)
     if motor== 'b':
-        
+
         angulo=ActualB+dir*(dif)
         ActualB=angulo
 
@@ -79,7 +79,7 @@ def moveMotor(motor,dir):
 
         servoB.value=convertirAngulo(angulo)
     if motor== 'c':
-        
+
         angulo=ActualC+dir*(dif)
         ActualC=angulo
 
@@ -100,7 +100,7 @@ def moveMotor(motor,dir):
             angulo =180
 
         servoD.value=convertirAngulo(angulo)
-   
+
 
 
 def listener():
