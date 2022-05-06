@@ -93,7 +93,8 @@ def moveMotor(motor,dire):
         if angulo > 180:
             angulo =180
         ActualA=angulo
-        print("angulo A: "str(ActualA))
+        print("angulo A:")
+        print(ActualA)
         #print(convertirAngulo(angulo))
 
         servoA.value=convertirAngulo(angulo)
@@ -108,7 +109,8 @@ def moveMotor(motor,dire):
         if angulo > 150:
             angulo =150
         ActualB=angulo
-        print("angulo B: "str(ActualB))
+        print("angulo B:")
+        print(ActualB)
 
         servoB.value=convertirAngulo(angulo)
     if motor== 'c':
@@ -121,7 +123,8 @@ def moveMotor(motor,dire):
         if angulo > 180:
             angulo =180
         ActualC=angulo
-        print("angulo C: "str(ActualC))
+        print("angulo C:")
+        print(ActualC)
         servoC.value=convertirAngulo(angulo)
 
 
@@ -135,7 +138,8 @@ def moveMotor(motor,dire):
         if angulo > 90:
             angulo =180
         ActualD=angulo
-        print("angulo D: "str(ActualD))
+        print("angulo D:")
+        print(ActualD)
         servoD.value=convertirAngulo(angulo)
 
 
