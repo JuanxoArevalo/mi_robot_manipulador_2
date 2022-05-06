@@ -33,6 +33,7 @@ ActualC=InicialC
 ActualD=InicialD
 
 # lee la informacion de teleop
+print('hola')
 def callback_read(data):
     global dif
     dato = data.data
@@ -107,7 +108,7 @@ def moveMotor(motor,dire):
             servoD.value=convertirAngulo(angulo)
 
 def listener():
-
+    print("buenas")
     rospy.init_node('robot_listener', anonymous=True)
     rospy.Subscriber('/robot_cmdVel', String, callback_read)
     rospy.spin()

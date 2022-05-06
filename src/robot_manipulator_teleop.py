@@ -74,6 +74,7 @@ def talker():
     keyboard.hook(key_press)
 
     while not rospy.is_shutdown():
+        print(str(msg.data))
         pub.publish(msg)
         rate.sleep()
 
