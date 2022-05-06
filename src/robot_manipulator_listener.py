@@ -27,7 +27,7 @@ servoD = Servo(1)
 
 # Angulo de cada paso
 
-dif=2
+dif=10
 
 # Angulo actual
 
