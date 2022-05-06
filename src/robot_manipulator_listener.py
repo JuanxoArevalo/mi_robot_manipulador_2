@@ -35,6 +35,7 @@ ActualD=InicialD
 # lee la informacion de teleop
 print('hola')
 def callback_read(data):
+    print("call")
     global dif
     dato = data.data
     datos=dato.split(',')
@@ -68,8 +69,8 @@ def moveMotor(motor,dire):
             angulo =0
         if angulo > 180:
             angulo =180
-        if angulo!= ActualA:
-            servoA.value=convertirAngulo(angulo)
+ 
+        servoA.value=convertirAngulo(angulo)
     if motor== 'b':
 
         angulo=ActualB+dire*(dif)
@@ -79,8 +80,8 @@ def moveMotor(motor,dire):
             angulo =0
         if angulo > 180:
             angulo =180
-        if angulo!= ActualB:
-            servoB.value=convertirAngulo(angulo)
+
+        servoB.value=convertirAngulo(angulo)
     if motor== 'c':
 
         angulo=ActualC+dire*(dif)
@@ -90,8 +91,8 @@ def moveMotor(motor,dire):
             angulo =0
         if angulo > 180:
             angulo =180
-        if angulo!= ActualC:
-            servoC.value=convertirAngulo(angulo)
+
+        servoC.value=convertirAngulo(angulo)
 
 
     if motor== 'd':
@@ -104,8 +105,7 @@ def moveMotor(motor,dire):
         if angulo > 180:
             angulo =180
 
-        if angulo!= ActualD:
-            servoD.value=convertirAngulo(angulo)
+        servoD.value=convertirAngulo(angulo)
 
 def listener():
     print("buenas")
