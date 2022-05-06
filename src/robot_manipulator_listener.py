@@ -13,9 +13,9 @@ global ActualB
 global ActualC
 global ActualD
 
-InicialA=0
-InicialB=0
-InicialC=0
+InicialA=120
+InicialB=40
+InicialC=130
 InicialD=0
 
 # Definicion de los servos
@@ -53,6 +53,7 @@ ActualD=InicialD
 print('hola')
 def callback_read(data):
     #print("call")
+
     global dif
     dato = data.data
     datos=dato.split(',')
@@ -141,10 +142,16 @@ def moveMotor(motor,dire):
         print("angulo D:")
         print(ActualD)
         servoD.value=convertirAngulo(angulo)
+def inicio():
+    servoA.value=convertirAngulo(ActualA)
+    servoB.value=convertirAngulo(ActualB)
+    servoC.value=convertirAngulo(ActualC)
+    servoD.value=convertirAngulo(ActualD)
 
 
 def listener():
     print("buenas")
+    inicio()
     rospy.init_node('robot_listener', anonymous=True)
     rospy.Subscriber('/robot_cmdVel', String, callback_read)
     rospy.spin()
