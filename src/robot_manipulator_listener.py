@@ -43,8 +43,8 @@ def callback_read(data):
     global dif
     dato = data.data
     datos=dato.split(',')
-    if datos[0]!="0":
-        print(datos)
+    #if datos[0]!="0":
+    #    print(datos)
     #Direcion de giro
 
     dire=int(datos[0])*dif
@@ -71,6 +71,7 @@ def moveMotor(motor,dire):
 
         angulo=ActualA+dire*(dif)
         ActualA=angulo
+        print(ActualA)
 
         if angulo < 0:
             angulo =0
@@ -113,6 +114,7 @@ def moveMotor(motor,dire):
             angulo =180
 
         servoD.value=convertirAngulo(angulo)
+
 
 def listener():
     print("buenas")
