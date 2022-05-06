@@ -68,7 +68,7 @@ def moveMotor(motor,dire):
     global ActualC
     global ActualD
     if motor== 'a':
-
+        print(dire)
         angulo=ActualA+dire*(dif)
         ActualA=angulo
         print(ActualA)
