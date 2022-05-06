@@ -31,18 +31,18 @@ def key_press(key):
 
         elif key.name == "1":
             msg.data = str(dire)+",a"
-            getPos()
+            #getPos()
 
         elif key.name == "2":
             msg.data = str(dire)+",b"
-            getPos()
+            #getPos()
 
         elif key.name == "3":
             msg.data = str(dire)+",c"
-            getPos()
+            #getPos()
         elif key.name == "4":
             msg.data = str(dire)+",d"
-            getPos()
+            #getPos()
 
 
     elif key.event_type == "up":
@@ -74,7 +74,7 @@ def talker():
     keyboard.hook(key_press)
 
     while not rospy.is_shutdown():
-        print(str(msg.data))
+        #print("\n" +str(msg.data))
         pub.publish(msg)
         rate.sleep()
 

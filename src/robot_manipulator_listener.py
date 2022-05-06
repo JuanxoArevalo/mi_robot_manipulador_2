@@ -3,11 +3,15 @@ from posixpath import split
 import rospy
 from geometry_msgs.msg import Twist
 from std_msgs.msg import String
-import RPi.GPIO as GPIO
-from gpiozero import Servo
+#import RPi.GPIO as GPIO
+#from gpiozero import Servo
 
 # Angulos iniciales de cada motor
 global dif
+global ActualA
+global ActualB
+global ActualC
+global ActualD
 
 InicialA=0
 InicialB=0
@@ -16,10 +20,10 @@ InicialD=0
 
 # Definicion de los servos
 
-servoA = Servo(25)
-servoB = Servo(8)
-servoC = Servo(7)
-servoD = Servo(1)
+#servoA = Servo(25)
+#servoB = Servo(8)
+#servoC = Servo(7)
+#servoD = Servo(1)
 
 # Angulo de cada paso
 
@@ -35,19 +39,19 @@ ActualD=InicialD
 # lee la informacion de teleop
 print('hola')
 def callback_read(data):
-    print("call")
+    #print("call")
     global dif
     dato = data.data
     datos=dato.split(',')
-    
-    print(datos)
+    if datos[0]!="0":
+        print(datos)
     #Direcion de giro
 
-    dire=int(datos[1])*dif
+    dire=int(datos[0])*dif
 
     # Motor
 
-    motor=datos[0]
+    motor=datos[1]
     moveMotor(motor,dire)
 
 # Convierte el angulo a un valor valido entre -1 y 1
@@ -59,7 +63,10 @@ def convertirAngulo(angulo):
 # Mueve el motor a un angulo
 
 def moveMotor(motor,dire):
-
+    global ActualA
+    global ActualB
+    global ActualC
+    global ActualD
     if motor== 'a':
 
         angulo=ActualA+dire*(dif)
@@ -70,7 +77,7 @@ def moveMotor(motor,dire):
         if angulo > 180:
             angulo =180
  
-        servoA.value=convertirAngulo(angulo)
+ #       servoA.value=convertirAngulo(angulo)
     if motor== 'b':
 
         angulo=ActualB+dire*(dif)
@@ -81,7 +88,7 @@ def moveMotor(motor,dire):
         if angulo > 180:
             angulo =180
 
-        servoB.value=convertirAngulo(angulo)
+  #      servoB.value=convertirAngulo(angulo)
     if motor== 'c':
 
         angulo=ActualC+dire*(dif)
@@ -92,7 +99,7 @@ def moveMotor(motor,dire):
         if angulo > 180:
             angulo =180
 
-        servoC.value=convertirAngulo(angulo)
+   #     servoC.value=convertirAngulo(angulo)
 
 
     if motor== 'd':
@@ -105,7 +112,7 @@ def moveMotor(motor,dire):
         if angulo > 180:
             angulo =180
 
-        servoD.value=convertirAngulo(angulo)
+    #    servoD.value=convertirAngulo(angulo)
 
 def listener():
     print("buenas")
