@@ -16,9 +16,9 @@ InicialD=0
 # Definicion de los servos
 
 servoA = Servo(25)
-servoB = Servo(24)
-servoC = Servo(23)
-servoD = Servo(22)
+servoB = Servo(8)
+servoC = Servo(7)
+servoD = Servo(1)
 
 # Angulo de cada paso
 
