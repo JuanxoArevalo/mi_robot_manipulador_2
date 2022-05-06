@@ -32,7 +32,7 @@ myCorrection=0.45
 maxPW=(2.0+myCorrection)/1000
 minPW=(1.0-myCorrection)/1000
 
-servoA = AngularServo(myGPIO1,0,180)
+servoA = AngularServo(myGPIO1,-90,90)
 #servoA.value=None
 #servoB = Servo(myGPIO2,min_pulse_width=minPW,max_pulse_width=maxPW)
 #servoC = Servo(myGPIO3,min_pulse_width=minPW,max_pulse_width=maxPW)
@@ -95,7 +95,7 @@ def moveMotor(motor,dire):
         ActualA=angulo
         print(convertirAngulo(angulo))
         #servoA = Servo(25,min_pulse_width=minPW,max_pulse_width=maxPW)
-        servoA.value=angulo
+        servoA.angle=angulo
         #servoA.value=None
     if motor== 'b':
 
