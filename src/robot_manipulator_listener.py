@@ -7,6 +7,7 @@ import RPi.GPIO as GPIO
 from gpiozero import Servo
 
 # Angulos iniciales de cada motor
+global dif
 
 InicialA=0
 InicialB=0
@@ -33,19 +34,19 @@ ActualD=InicialD
 
 # lee la informacion de teleop
 def callback_read(data):
-
+    global dif
     dato = data.data
     datos=dato.split(',')
     
     print(datos)
     #Direcion de giro
 
-    dir=int(datos[1])*dif
+    dire=int(datos[1])*dif
 
     # Motor
 
     motor=datos[0]
-    moveMotor(motor,dir)
+    moveMotor(motor,dire)
 
 # Convierte el angulo a un valor valido entre -1 y 1
 
@@ -55,11 +56,11 @@ def convertirAngulo(angulo):
 
 # Mueve el motor a un angulo
 
-def moveMotor(motor,dir):
+def moveMotor(motor,dire):
 
     if motor== 'a':
 
-        angulo=ActualA+dir*(dif)
+        angulo=ActualA+dire*(dif)
         ActualA=angulo
 
         if angulo < 0:
@@ -70,7 +71,7 @@ def moveMotor(motor,dir):
         servoA.value=convertirAngulo(angulo)
     if motor== 'b':
 
-        angulo=ActualB+dir*(dif)
+        angulo=ActualB+dire*(dif)
         ActualB=angulo
 
         if angulo < 0:
@@ -81,7 +82,7 @@ def moveMotor(motor,dir):
         servoB.value=convertirAngulo(angulo)
     if motor== 'c':
 
-        angulo=ActualC+dir*(dif)
+        angulo=ActualC+dire*(dif)
         ActualC=angulo
 
         if angulo < 0:
@@ -92,7 +93,7 @@ def moveMotor(motor,dir):
         servoC.value=convertirAngulo(angulo)
     if motor== 'd':
 
-        angulo=ActualD+dir*(dif)
+        angulo=ActualD+dire*(dif)
         ActualD=angulo
 
         if angulo < 0:
