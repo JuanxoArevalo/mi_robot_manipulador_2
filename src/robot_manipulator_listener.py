@@ -36,7 +36,8 @@ def callback_read(data):
 
     dato = data.data
     datos=dato.split(',')
-
+    
+    print(datos)
     #Direcion de giro
 
     dir=int(datos[1])*dif

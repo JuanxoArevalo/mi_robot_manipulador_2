@@ -6,14 +6,13 @@ import os
 import numpy as np
 
 ## Variables
+
 global msg
-global vel
-global dir
-global velmax
+global dire
 
 msg = String()
 
-
+dire=1
 
 
 def getPos():
@@ -24,56 +23,48 @@ def getPos():
 
 def key_press(key):
     global msg
-    global velLin
-    global velAng
-    global name
-    global x
-    global y
-    global theta
-    global position
+    global dire
 
     if key.event_type == "down":
         if key.name == "r":
-            dir=-1*dir
+            dire=-1*dire
 
         elif key.name == "1":
-            msg.data = str(dir)+",a"
+            msg.data = str(dire)+",a"
             getPos()
 
         elif key.name == "2":
-            msg.data = str(dir)+",b"
+            msg.data = str(dire)+",b"
             getPos()
 
         elif key.name == "3":
-            msg.data = str(dir)+",c"
+            msg.data = str(dire)+",c"
             getPos()
         elif key.name == "4":
-            msg.data = str(dir)+",d"
+            msg.data = str(dire)+",d"
             getPos()
 
 
     elif key.event_type == "up":
         if key.name == "1":
-            msg.data=0
+            msg.data="0,0"
         elif key.name == "2":
-            msg.data=0
+            msg.data="0,0"
         elif key.name == "3":
-            msg.data=0
+            msg.data="0,0"
         elif key.name == "4":
-            msg.data=0
+            msg.data="0,0"
         elif key.name == "r":
-            dir=dir
+            dire=dire
 
 
 def talker():
-    global vel
-    global velmax
-    velmax=0
-    global msg
 
 
-    vel = int(input('Ingrese la velocidad deseada: '+"[0-"+str(int(velmax))+"](cm/s):"))
 
+
+    #vel = int(input('Ingrese la velocidad deseada: '+"[0-"+str(int(velmax))+"](cm/s):"))
+    
 
 
     rospy.init_node('robot_manipulator_teleop', anonymous=True)
