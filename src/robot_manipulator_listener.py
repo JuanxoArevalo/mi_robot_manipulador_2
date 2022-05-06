@@ -97,6 +97,7 @@ def moveMotor(motor,dire):
         #servoA = Servo(25,min_pulse_width=minPW,max_pulse_width=maxPW)
         servoA.value=None
         servoA.value=convertirAngulo(angulo)
+        servoA.value=None
 
     if motor== 'b':
 
