@@ -3,8 +3,8 @@ from posixpath import split
 import rospy
 from geometry_msgs.msg import Twist
 from std_msgs.msg import String
-#import RPi.GPIO as GPIO
-#from gpiozero import Servo
+import RPi.GPIO as GPIO
+from gpiozero import Servo
 
 # Angulos iniciales de cada motor
 global dif
@@ -20,10 +20,10 @@ InicialD=0
 
 # Definicion de los servos
 
-#servoA = Servo(25)
-#servoB = Servo(8)
-#servoC = Servo(7)
-#servoD = Servo(1)
+servoA = Servo(25)
+servoB = Servo(8)
+servoC = Servo(7)
+servoD = Servo(1)
 
 # Angulo de cada paso
 
@@ -77,7 +77,7 @@ def moveMotor(motor,dire):
         if angulo > 180:
             angulo =180
  
- #       servoA.value=convertirAngulo(angulo)
+        servoA.value=convertirAngulo(angulo)
     if motor== 'b':
 
         angulo=ActualB+dire*(dif)
@@ -88,7 +88,7 @@ def moveMotor(motor,dire):
         if angulo > 180:
             angulo =180
 
-  #      servoB.value=convertirAngulo(angulo)
+        servoB.value=convertirAngulo(angulo)
     if motor== 'c':
 
         angulo=ActualC+dire*(dif)
@@ -99,7 +99,7 @@ def moveMotor(motor,dire):
         if angulo > 180:
             angulo =180
 
-   #     servoC.value=convertirAngulo(angulo)
+        servoC.value=convertirAngulo(angulo)
 
 
     if motor== 'd':
@@ -112,7 +112,7 @@ def moveMotor(motor,dire):
         if angulo > 180:
             angulo =180
 
-    #    servoD.value=convertirAngulo(angulo)
+        servoD.value=convertirAngulo(angulo)
 
 def listener():
     print("buenas")
