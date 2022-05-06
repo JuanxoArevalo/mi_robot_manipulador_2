@@ -104,8 +104,8 @@ def moveMotor(motor,dire):
         angulo=ActualB+dire*(dif)
 
 
-        if angulo < 60:
-            angulo =60
+        if angulo < 40:
+            angulo =40
         if angulo > 150:
             angulo =150
         ActualB=angulo
