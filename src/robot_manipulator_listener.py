@@ -32,11 +32,11 @@ myCorrection=0.45
 maxPW=(2.0+myCorrection)/1000
 minPW=(1.0-myCorrection)/1000
 
-#servoA = Servo(myGPIO1,min_pulse_width=minPW,max_pulse_width=maxPW)
+servoA = Servo(myGPIO1,min_pulse_width=minPW,max_pulse_width=maxPW)
 #servoA.value=None
 servoB = Servo(myGPIO2,min_pulse_width=minPW,max_pulse_width=maxPW)
-#servoC = Servo(myGPIO3,min_pulse_width=minPW,max_pulse_width=maxPW)
-#servoD = Servo(myGPIO4,min_pulse_width=minPW,max_pulse_width=maxPW)
+servoC = Servo(myGPIO3,min_pulse_width=minPW,max_pulse_width=maxPW)
+servoD = Servo(myGPIO4,min_pulse_width=minPW,max_pulse_width=maxPW)
 
 # Angulo de cada paso
 
@@ -86,29 +86,29 @@ def moveMotor(motor,dire):
         angulo=ActualA+dire*(dif)
 
         
-        print(ActualA)
+
 
         if angulo < 0:
             angulo =0
         if angulo > 180:
             angulo =180
         ActualA=angulo
-        print(convertirAngulo(angulo))
-        #servoA = Servo(25,min_pulse_width=minPW,max_pulse_width=maxPW)
-        #servoA.value=None
-        servoB.value=convertirAngulo(angulo)
-        #servoA.value=None
+        print("angulo A: "str(ActualA))
+        #print(convertirAngulo(angulo))
+
+        servoA.value=convertirAngulo(angulo)
 
     if motor== 'b':
 
         angulo=ActualB+dire*(dif)
 
 
-        if angulo < 0:
-            angulo =0
-        if angulo > 180:
-            angulo =180
+        if angulo < 60:
+            angulo =60
+        if angulo > 150:
+            angulo =150
         ActualB=angulo
+        print("angulo B: "str(ActualB))
 
         servoB.value=convertirAngulo(angulo)
     if motor== 'c':
@@ -116,11 +116,12 @@ def moveMotor(motor,dire):
         angulo=ActualC+dire*(dif)
 
 
-        if angulo < 0:
-            angulo =0
+        if angulo < 110:
+            angulo =110
         if angulo > 180:
             angulo =180
         ActualC=angulo
+        print("angulo C: "str(ActualC))
         servoC.value=convertirAngulo(angulo)
 
 
@@ -129,11 +130,12 @@ def moveMotor(motor,dire):
         angulo=ActualD+dire*(dif)
 
 
-        if angulo < 0:
-            angulo =0
-        if angulo > 180:
+        if angulo < 90:
+            angulo =90
+        if angulo > 90:
             angulo =180
         ActualD=angulo
+        print("angulo D: "str(ActualD))
         servoD.value=convertirAngulo(angulo)
 
 
