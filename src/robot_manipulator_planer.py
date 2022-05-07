@@ -40,7 +40,7 @@ def set_pose2(x,y,th):
     q1=np.arctan(y/x)+np.arctan(d)
 
 
-    anguloB=math.degrees(q2)+60+180
+    anguloB=math.degrees(q2)-60
     anguloC=math.degrees(q1)+360
 
     print(anguloB)
