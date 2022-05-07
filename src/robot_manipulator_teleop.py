@@ -13,9 +13,10 @@ global velA
 global velB
 global velC
 
-velA=0
-velB=0
-velC=0
+velA=int(input("Velocidad motor A: "))
+velB=int(input("Velocidad motor B: "))
+velC=int(input("Velocidad motor C: "))
+    
 msg = String()
 
 dire=1
@@ -85,15 +86,14 @@ def key_press(key):
 
 def talker():
 
-
+    global velA
+    global velB
+    global velC
 
 
     #vel = int(input('Ingrese la velocidad deseada: '+"[0-"+str(int(velmax))+"](cm/s):"))
     
-    velA=int(input("Velocidad motor A: "))
-    velB=int(input("Velocidad motor B: "))
-    velC=int(input("Velocidad motor C: "))
-    
+
     rospy.init_node('robot_manipulator_teleop', anonymous=True)
     pub = rospy.Publisher('/robot_cmdVel', String, queue_size=10)
     rate = rospy.Rate(10) #10Hz
