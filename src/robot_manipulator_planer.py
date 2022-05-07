@@ -211,8 +211,8 @@ while True:
 
     print("Objetivo")
     goal=input("r,thetha,z").split(',')
-    r=int(goal[0])
+    r=float(goal[0])
     th=int(goal[1])
-    z=int(goal[2])
+    z=float(goal[2])
 
     set_pose(r,th,z)
