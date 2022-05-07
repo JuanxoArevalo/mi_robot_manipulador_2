@@ -13,6 +13,9 @@ global velA
 global velB
 global velC
 
+velA=0
+velB=0
+velC=0
 msg = String()
 
 dire=1
