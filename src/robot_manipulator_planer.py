@@ -39,8 +39,11 @@ def set_pose2(x,y,th):
     anguloB=q2+60
     anguloC=q1+180
 
-    servoB.value=convertirAngulo(anguloB)
-    servoC.value=convertirAngulo(anguloC)
+    print(anguloB)
+    print(anguloC)
+
+    servoB.value=convertirAnguloB(anguloB)
+    servoC.value=convertirAnguloC(anguloC)
     servoA.value=convertirAngulo(th)
 
 
@@ -48,10 +51,24 @@ def set_pose2(x,y,th):
 
 
 
-def convertirAngulo(angulo):
+def convertirAnguloB(angulo):
+    
+    a=(-1+(angulo*(1/90)))
 
-    return (-1+(angulo*(1/90)))
+    if a < 40:
+        a =40
+    if a > 150:
+        a =150    
+    return a
+def convertirAnguloC(angulo):
+    
+    a=(-1+(angulo*(1/90)))
 
+    if a < 110:
+        a =110
+    if a > 180:
+        a =180    
+    return a
 # Mueve el motor a un angulo
 
 
