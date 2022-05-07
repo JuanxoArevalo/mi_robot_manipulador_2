@@ -63,7 +63,7 @@ while True:
     print("Objetivo")
     goal=input("x,y,theta").split(',')
     x=float(goal[0])
-    th=int(goal[1])
-    y=float(goal[2])
+    th=int(goal[2])
+    y=float(goal[1])
 
     set_pose2(x,y,th)
