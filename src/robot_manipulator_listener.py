@@ -40,7 +40,10 @@ servoD = Servo(myGPIO4,min_pulse_width=minPW,max_pulse_width=maxPW)
 
 # Angulo de cada paso
 
-dif=10
+difA=10
+difB=int(input("B: "))
+difC=int(input("C: "))
+difD=10
 
 # Angulo actual
 
@@ -54,7 +57,7 @@ print('hola')
 def callback_read(data):
     #print("call")
 
-    global dif
+
     dato = data.data
     datos=dato.split(',')
     #if datos[0]!="0":
@@ -72,9 +75,17 @@ def callback_read(data):
 
 def arriba():
     moveMotor("b",1)
-    moveMotor("c",1)
+    moveMotor("c",-1)
 
 def abajo():
+    moveMotor("b",-1)
+    moveMotor("c",1)
+
+def adelante():
+    moveMotor("b",1)
+    moveMotor("c",1)
+
+def atras():
     moveMotor("b",-1)
     moveMotor("c",-1)
 
@@ -92,7 +103,7 @@ def moveMotor(motor,dire):
     global maxPW
     global minPW
     if motor== 'a':
-        angulo=ActualA+dire*(dif)
+        angulo=ActualA+dire*(difA)
 
         
 
@@ -110,7 +121,7 @@ def moveMotor(motor,dire):
 
     if motor== 'b':
 
-        angulo=ActualB+dire*(dif)
+        angulo=ActualB+dire*(difB)
 
 
         if angulo < 40:
@@ -124,7 +135,7 @@ def moveMotor(motor,dire):
         servoB.value=convertirAngulo(angulo)
     if motor== 'c':
 
-        angulo=ActualC+dire*(dif)
+        angulo=ActualC+dire*(difC)
 
 
         if angulo < 110:
@@ -139,7 +150,7 @@ def moveMotor(motor,dire):
 
     if motor== 'd':
 
-        angulo=ActualD+dire*(dif)
+        angulo=ActualD+dire*(difD)
 
 
         if angulo < 90:
@@ -154,6 +165,10 @@ def moveMotor(motor,dire):
         arriba()
     if motor=='k':
         abajo()
+    if motor=='j':
+        adelante
+    if motor=='l':
+        atras()
 def inicio():
     servoA.value=convertirAngulo(ActualA)
     servoB.value=convertirAngulo(ActualB)
