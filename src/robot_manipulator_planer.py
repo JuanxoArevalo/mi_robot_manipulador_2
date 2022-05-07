@@ -11,7 +11,7 @@ import numpy as np
 
 def set_pose2(x,y,th):
     
-    c=((x*x)+(y*y)-2(8*8))/(2*8*8)
+    c=((x**2)+(y**2)-128)/(2*8*8)
     q2=-np.arcos(c)
     
     d=(8*np.sin(q2)*q2)/(8+8*np.cos(q2)*q2)
@@ -43,7 +43,7 @@ while True:
 
     print("Objetivo")
     goal=input("x,y,theta").split(',')
-    r=float(goal[0])
+    x=float(goal[0])
     th=int(goal[1])
     z=float(goal[2])
 
