@@ -49,10 +49,10 @@ def key_press(key):
         elif key.name == "i":
             msg.data = str(dire)+",i"
         elif key.name == "j":
-            msg.data = str(dire)+",k"
+            msg.data = str(dire)+",j"
             #getPos()
         elif key.name == "l":
-            msg.data = str(dire)+",i"
+            msg.data = str(dire)+",l"
             #getPos()
         
 
