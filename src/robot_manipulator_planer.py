@@ -65,8 +65,8 @@ global minY
 maxX=150
 minX=40
 
-maxY=150
-minY=40
+maxY=180
+minY=110
 
 def set_pose(r,th,z):
     global ActualA
@@ -89,8 +89,8 @@ def set_pose(r,th,z):
     ActualB=InicialB
     ActualC=InicialC
 
-    while(ActualB!=metaZ):
-        arriba()
+    while(ActualC!=metaZ):
+        abajo()
 
     servoB.value=convertirAngulo(ActualB)
     servoC.value=convertirAngulo(ActualC)
