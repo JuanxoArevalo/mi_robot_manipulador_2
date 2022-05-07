@@ -150,7 +150,7 @@ def angulosActuales(motor,dire,difA,difB,difC):
     print(posCart)
     posx=posCart[0]
     posy=posCart[1]
-    posy=posCart[2]
+    posz=posCart[2]
 
     trackX.append(posx)
     trackY.append(posy)
@@ -183,18 +183,17 @@ def save_plot():
 
 
 if __name__ == '__main__':
-    print("buenas")
     rospy.init_node('robot_manipulator_interface', anonymous=True)
     rospy.Subscriber('/robot_cmdVel', String, callback_read)
     rospy.Rate(60)
 
-    fig = plt.figure(figsize=(5,5))
+    fig = plt.figure(figsize=(4,4))
     root = Tk.Tk()
-    root.geometry("500x700")
+    root.geometry("800x900")
     root.configure(background='white')
 
     canvas = FigureCanvasTkAgg(fig, master=root)
-    canvas.get_tk_widget().place(x=0, rely=0.1)
+    canvas.get_tk_widget().place(x=0, rely=0.05)
 
     ax = fig.add_subplot(1, 1, 1)
     # Format plot
@@ -205,17 +204,18 @@ if __name__ == '__main__':
 
 
     title_input = Tk.Entry(master=root,
-                            width=30,
+                            width=50,
                             font=fontFamily)
     title_input.place(x=75,rely=0.1)
     save_btn = Tk.Button(master = root,
                         height=2,
-                        width=50,
+                        width=80,
                         command=save_plot,
                         text='Save')
-    save_btn.place(relx=0.1, y=600)
+    save_btn.place(relx=0.1, rely=0.95)
 
     # Set up plot to call animate() function periodically
     ani = animation.FuncAnimation(fig, animate, fargs=(trackX, trackY), interval=0)
+
 
     Tk.mainloop()
