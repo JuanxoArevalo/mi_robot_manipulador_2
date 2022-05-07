@@ -71,11 +71,11 @@ def callback_read(data):
 # Convierte el angulo a un valor valido entre -1 y 1
 
 def arriba():
-    moveMotor("b",1)
+    moveMotor("b",-1)
     moveMotor("c",1)
 
 def abajo():
-    moveMotor("b",-1)
+    moveMotor("b",1)
     moveMotor("c",-1)
 
 def convertirAngulo(angulo):
