@@ -48,6 +48,11 @@ def key_press(key):
             #getPos()
         elif key.name == "i":
             msg.data = str(dire)+",i"
+        elif key.name == "j":
+            msg.data = str(dire)+",k"
+            #getPos()
+        elif key.name == "l":
+            msg.data = str(dire)+",i"
             #getPos()
         
 
@@ -63,6 +68,10 @@ def key_press(key):
         elif key.name == "k":
             msg.data="0,0"
         elif key.name == "i":
+            msg.data="0,0"
+        elif key.name == "j":
+            msg.data="0,0"
+        elif key.name == "l":
             msg.data="0,0"
         elif key.name == "r":
             dire=dire

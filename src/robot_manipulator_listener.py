@@ -74,11 +74,19 @@ def callback_read(data):
 # Convierte el angulo a un valor valido entre -1 y 1
 
 def arriba():
+    moveMotor("b",1)
+    moveMotor("c",-1)
+
+def abajo():
     moveMotor("b",-1)
     moveMotor("c",1)
 
-def abajo():
+def adelante():
     moveMotor("b",1)
+    moveMotor("c",1)
+
+def atras():
+    moveMotor("b",-1)
     moveMotor("c",-1)
 
 def convertirAngulo(angulo):
@@ -157,6 +165,10 @@ def moveMotor(motor,dire):
         arriba()
     if motor=='k':
         abajo()
+    if motor=='j':
+        adelante
+    if motor=='l':
+        atras()
 def inicio():
     servoA.value=convertirAngulo(ActualA)
     servoB.value=convertirAngulo(ActualB)
