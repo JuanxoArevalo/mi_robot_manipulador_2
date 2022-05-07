@@ -12,7 +12,7 @@ import numpy as np
 def set_pose2(x,y,th):
     
     c=((x**2)+(y**2)-128)/(2*8*8)
-    q2=-np.arcos(c)
+    q2=-np.arccos(c)
     
     d=(8*np.sin(q2)*q2)/(8+8*np.cos(q2)*q2)
     q1=np.arctan(y/x)+np.arctan(d)
@@ -45,6 +45,6 @@ while True:
     goal=input("x,y,theta").split(',')
     x=float(goal[0])
     th=int(goal[1])
-    z=float(goal[2])
+    y=float(goal[2])
 
-    set_pose2(x,z,th)
+    set_pose2(x,y,th)
