@@ -36,11 +36,13 @@ def set_pose2(x,y,th):
     d=(8*np.sin(q2)*q2)/(8+8*np.cos(q2)*q2)
     q1=np.arctan(y/x)+np.arctan(d)
 
+    print(q2)
+    print(q1)
     anguloB=q2+60
     anguloC=q1+180
 
-    print(anguloB)
-    print(anguloC)
+    #print(anguloB)
+    #print(anguloC)
 
     servoB.value=convertirAnguloB(anguloB)
     servoC.value=convertirAnguloC(anguloC)
@@ -48,7 +50,9 @@ def set_pose2(x,y,th):
 
 
 
+def convertirAngulo(angulo):
 
+    return (-1+(angulo*(1/90)))
 
 
 def convertirAnguloB(angulo):
