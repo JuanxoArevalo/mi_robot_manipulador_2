@@ -9,6 +9,9 @@ import numpy as np
 
 global msg
 global dire
+global velA
+global velB
+global velC
 
 msg = String()
 
@@ -30,49 +33,49 @@ def key_press(key):
             dire=-1*dire
 
         elif key.name == "1":
-            msg.data = str(dire)+",a"
+            msg.data = str(dire)+",a"+','+str(velA)+','+str(velB)+','+str(velC)
             #getPos()
 
         elif key.name == "2":
-            msg.data = str(dire)+",b"
+            msg.data = str(dire)+",b"+','+str(velA)+','+str(velB)+','+str(velC)
             #getPos()
 
         elif key.name == "3":
-            msg.data = str(dire)+",c"
+            msg.data = str(dire)+",c"+','+str(velA)+','+str(velB)+','+str(velC)
             #getPos()
         elif key.name == "4":
-            msg.data = str(dire)+",d"
+            msg.data = str(dire)+",d"+','+str(velA)+','+str(velB)+','+str(velC)
             #getPos()
         elif key.name == "k":
-            msg.data = str(dire)+",k"
+            msg.data = str(dire)+",k"+','+str(velA)+','+str(velB)+','+str(velC)
             #getPos()
         elif key.name == "i":
-            msg.data = str(dire)+",i"
+            msg.data = str(dire)+",i"+','+str(velA)+','+str(velB)+','+str(velC)
         elif key.name == "j":
-            msg.data = str(dire)+",j"
+            msg.data = str(dire)+",j"+','+str(velA)+','+str(velB)+','+str(velC)
             #getPos()
         elif key.name == "l":
-            msg.data = str(dire)+",l"
+            msg.data = str(dire)+",l"+','+str(velA)+','+str(velB)+','+str(velC)
             #getPos()
         
 
     elif key.event_type == "up":
         if key.name == "1":
-            msg.data="0,0"
+            msg.data="0,0,0,0,0"
         elif key.name == "2":
-            msg.data="0,0"
+            msg.data="0,0,0,0,0"
         elif key.name == "3":
-            msg.data="0,0"
+            msg.data="0,0,0,0,0"
         elif key.name == "4":
-            msg.data="0,0"
+            msg.data="0,0,0,0,0"
         elif key.name == "k":
-            msg.data="0,0"
+            msg.data="0,0,0,0,0"
         elif key.name == "i":
-            msg.data="0,0"
+            msg.data="0,0,0,0,0"
         elif key.name == "j":
-            msg.data="0,0"
+            msg.data="0,0,0,0,0"
         elif key.name == "l":
-            msg.data="0,0"
+            msg.data="0,0,0,0,0"
         elif key.name == "r":
             dire=dire
 
@@ -84,8 +87,10 @@ def talker():
 
     #vel = int(input('Ingrese la velocidad deseada: '+"[0-"+str(int(velmax))+"](cm/s):"))
     
-
-
+    velA=int(input("Velocidad motor A: "))
+    velB=int(input("Velocidad motor B: "))
+    velC=int(input("Velocidad motor C: "))
+    
     rospy.init_node('robot_manipulator_teleop', anonymous=True)
     pub = rospy.Publisher('/robot_cmdVel', String, queue_size=10)
     rate = rospy.Rate(10) #10Hz

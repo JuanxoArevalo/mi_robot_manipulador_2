@@ -7,7 +7,11 @@ from std_msgs.msg import String
 from gpiozero import Servo
 
 # Angulos iniciales de cada motor
-global dif
+global difA
+global difB
+global difC
+global difD
+
 global ActualA
 global ActualB
 global ActualC
@@ -40,9 +44,7 @@ servoD = Servo(myGPIO4,min_pulse_width=minPW,max_pulse_width=maxPW)
 
 # Angulo de cada paso
 
-difA=10
-difB=int(input("B: "))
-difC=int(input("C: "))
+
 difD=10
 
 # Angulo actual
@@ -65,29 +67,32 @@ def callback_read(data):
     #Direcion de giro
 
     dire=int(datos[0])
+    difA=int(datos[2])
+    difB=int(datos[3])
+    difC=int(datos[4])
 
     # Motor
 
     motor=datos[1]
-    moveMotor(motor,dire)
+    moveMotor(motor,dire,difA,difB,difC)
 
 # Convierte el angulo a un valor valido entre -1 y 1
 
 def arriba():
-    moveMotor("b",1)
-    moveMotor("c",-1)
+    moveMotor("b",1,10,10,10)
+    moveMotor("c",-1,10,10,10)
 
 def abajo():
-    moveMotor("b",-1)
-    moveMotor("c",1)
+    moveMotor("b",-1,10,10,10)
+    moveMotor("c",1,10,10,10)
 
 def adelante():
-    moveMotor("b",1)
-    moveMotor("c",1)
+    moveMotor("b",1,10,10,10)
+    moveMotor("c",1,10,10,10)
 
 def atras():
-    moveMotor("b",-1)
-    moveMotor("c",-1)
+    moveMotor("b",-1,10,10,10)
+    moveMotor("c",-1,10,10,10)
 
 def convertirAngulo(angulo):
 
@@ -95,7 +100,7 @@ def convertirAngulo(angulo):
 
 # Mueve el motor a un angulo
 
-def moveMotor(motor,dire):
+def moveMotor(motor,dire,difA,difB,difC):
     global ActualA
     global ActualB
     global ActualC
