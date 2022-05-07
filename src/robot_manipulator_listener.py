@@ -166,7 +166,7 @@ def moveMotor(motor,dire):
     if motor=='k':
         abajo()
     if motor=='j':
-        adelante
+        adelante()
     if motor=='l':
         atras()
 def inicio():
