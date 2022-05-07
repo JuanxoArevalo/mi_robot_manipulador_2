@@ -95,6 +95,9 @@ def set_pose(r,th,z):
     servoB.value=convertirAngulo(ActualB)
     servoC.value=convertirAngulo(ActualC)
 
+    ActualB=InicialB
+    ActualC=InicialC
+
 
 
 
