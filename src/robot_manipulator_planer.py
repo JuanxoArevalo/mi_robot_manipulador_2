@@ -6,6 +6,9 @@ from std_msgs.msg import String
 #import RPi.GPIO as GPIO
 from gpiozero import Servo
 import numpy as np
+import math
+math.degrees(math.pi/2)
+
 
 
 myGPIO1=25
@@ -36,13 +39,12 @@ def set_pose2(x,y,th):
     d=(8*np.sin(q2)*q2)/(8+8*np.cos(q2)*q2)
     q1=np.arctan(y/x)+np.arctan(d)
 
-    print(q2)
-    print(q1)
-    anguloB=q2+60
-    anguloC=q1+180
 
-    #print(anguloB)
-    #print(anguloC)
+    anguloB=math.degrees(q2)+60
+    anguloC=math.degrees(q1)+180
+
+    print(anguloB)
+    print(anguloC)
 
     servoB.value=convertirAnguloB(anguloB)
     servoC.value=convertirAnguloC(anguloC)
