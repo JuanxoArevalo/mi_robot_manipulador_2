@@ -13,7 +13,7 @@ with open(path, 'rb') as handle:
 def run_camera(colors_to_test = ['red', 'yellow'], radius=10):
     global filters
 
-    cap = cv2.VideoCapture(2)
+    cap = cv2.VideoCapture(0)
     
     while True:
         _, frame = cap.read()
