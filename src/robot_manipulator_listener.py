@@ -70,7 +70,7 @@ def callback_read(data):
     difA=int(datos[2])
     difB=int(datos[3])
     difC=int(datos[4])
-
+    
     # Motor
 
     motor=datos[1]
@@ -109,7 +109,7 @@ def moveMotor(motor,dire,difA,difB,difC):
     global minPW
     if motor== 'a':
         angulo=ActualA+dire*(difA)
-
+        
         
 
 
