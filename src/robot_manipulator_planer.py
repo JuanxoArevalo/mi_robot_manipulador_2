@@ -52,23 +52,19 @@ def set_pose2(x,y,th):
 
 
 def convertirAnguloB(angulo):
-    
-    a=(-1+(angulo*(1/90)))
 
-    if a < 40:
-        a =40
-    if a > 150:
-        a =150    
-    return a
+    if angulo < 40:
+        angulo =40
+    if angulo > 150:
+        angulo =150    
+    return (-1+(angulo*(1/90)))
 def convertirAnguloC(angulo):
-    
-    a=(-1+(angulo*(1/90)))
 
-    if a < 110:
-        a =110
-    if a > 180:
-        a =180    
-    return a
+    if angulo < 110:
+        angulo =110
+    if angulo > 180:
+        angulo =180    
+    return (-1+(angulo*(1/90)))
 # Mueve el motor a un angulo
 
 
