@@ -69,6 +69,10 @@ maxY=150
 minY=40
 
 def set_pose(r,th,z):
+    global ActualA
+    global ActualB
+    global ActualC
+    global ActualD
 
     metaR=minX+int((maxX-minX)*r)
     metaTH=th
