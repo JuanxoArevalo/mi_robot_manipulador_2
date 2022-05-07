@@ -3,7 +3,7 @@ from posixpath import split
 import rospy
 from geometry_msgs.msg import Twist
 from std_msgs.msg import String
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 from gpiozero import Servo
 
 # Angulos iniciales de cada motor
@@ -13,21 +13,34 @@ global ActualB
 global ActualC
 global ActualD
 
-InicialA=0
-InicialB=0
-InicialC=0
+InicialA=120
+InicialB=40
+InicialC=130
 InicialD=0
 
 # Definicion de los servos
 
-servoA = Servo(25)
-servoB = Servo(8)
-servoC = Servo(7)
-servoD = Servo(1)
+myGPIO1=25
+myGPIO2=8
+myGPIO3=1
+myGPIO4=7
+
+global maxPW
+global minPW
+
+myCorrection=0.45
+maxPW=(2.0+myCorrection)/1000
+minPW=(1.0-myCorrection)/1000
+
+servoA = Servo(myGPIO1,min_pulse_width=minPW,max_pulse_width=maxPW)
+#servoA.value=None
+servoB = Servo(myGPIO2,min_pulse_width=minPW,max_pulse_width=maxPW)
+servoC = Servo(myGPIO3,min_pulse_width=minPW,max_pulse_width=maxPW)
+servoD = Servo(myGPIO4,min_pulse_width=minPW,max_pulse_width=maxPW)
 
 # Angulo de cada paso
 
-dif=2
+dif=10
 
 # Angulo actual
 
@@ -40,14 +53,15 @@ ActualD=InicialD
 print('hola')
 def callback_read(data):
     #print("call")
+
     global dif
     dato = data.data
     datos=dato.split(',')
-    if datos[0]!="0":
-        print(datos)
+    #if datos[0]!="0":
+    #    print(datos)
     #Direcion de giro
 
-    dire=int(datos[0])*dif
+    dire=int(datos[0])
 
     # Motor
 
@@ -55,6 +69,14 @@ def callback_read(data):
     moveMotor(motor,dire)
 
 # Convierte el angulo a un valor valido entre -1 y 1
+
+def arriba():
+    moveMotor("b",1)
+    moveMotor("c",1)
+
+def abajo():
+    moveMotor("b",-1)
+    moveMotor("c",-1)
 
 def convertirAngulo(angulo):
 
@@ -67,55 +89,81 @@ def moveMotor(motor,dire):
     global ActualB
     global ActualC
     global ActualD
+    global maxPW
+    global minPW
     if motor== 'a':
-
         angulo=ActualA+dire*(dif)
-        ActualA=angulo
+
+        
+
 
         if angulo < 0:
             angulo =0
         if angulo > 180:
             angulo =180
- 
+        ActualA=angulo
+        print("angulo A:")
+        print(ActualA)
+        #print(convertirAngulo(angulo))
+
         servoA.value=convertirAngulo(angulo)
+
     if motor== 'b':
 
         angulo=ActualB+dire*(dif)
-        ActualB=angulo
 
-        if angulo < 0:
-            angulo =0
-        if angulo > 180:
-            angulo =180
+
+        if angulo < 40:
+            angulo =40
+        if angulo > 150:
+            angulo =150
+        ActualB=angulo
+        print("angulo B:")
+        print(ActualB)
 
         servoB.value=convertirAngulo(angulo)
     if motor== 'c':
 
         angulo=ActualC+dire*(dif)
-        ActualC=angulo
 
-        if angulo < 0:
-            angulo =0
+
+        if angulo < 110:
+            angulo =110
         if angulo > 180:
             angulo =180
-
+        ActualC=angulo
+        print("angulo C:")
+        print(ActualC)
         servoC.value=convertirAngulo(angulo)
 
 
     if motor== 'd':
 
         angulo=ActualD+dire*(dif)
-        ActualD=angulo
 
-        if angulo < 0:
-            angulo =0
-        if angulo > 180:
+
+        if angulo < 90:
+            angulo =90
+        if angulo > 90:
             angulo =180
-
+        ActualD=angulo
+        print("angulo D:")
+        print(ActualD)
         servoD.value=convertirAngulo(angulo)
+    if motor=='i':
+        arriba()
+    if motor=='k':
+        abajo()
+def inicio():
+    servoA.value=convertirAngulo(ActualA)
+    servoB.value=convertirAngulo(ActualB)
+    servoC.value=convertirAngulo(ActualC)
+    servoD.value=convertirAngulo(ActualD)
+
 
 def listener():
     print("buenas")
+    inicio()
     rospy.init_node('robot_listener', anonymous=True)
     rospy.Subscriber('/robot_cmdVel', String, callback_read)
     rospy.spin()
