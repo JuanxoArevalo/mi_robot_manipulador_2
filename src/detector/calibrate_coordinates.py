@@ -32,9 +32,9 @@ def run_camera(colors_to_test = ['red', 'yellow'], radius=10):
                 cv2.circle(frame_to_show, (int(x), int(y)), radius, (0, 255, 0), 2)
                 print('x = ', int(x*8/40), 'y = ', int(y*8/40))
 
-        cv2.imshow('Camera', frame_to_show)
-        if(cv2.waitKey(1) & 0xFF == ord('q')):
-            break
+        #cv2.imshow('Camera', frame_to_show)
+        # if(cv2.waitKey(1) & 0xFF == ord('q')):
+        #     break
 
     cap.release()
     cv2.destroyAllWindows()
