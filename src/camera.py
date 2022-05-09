@@ -1,26 +1,24 @@
-# import the opencv library
+#!/usr/bin/env python3
+
 import cv2
+import rospy
+from sensor_msgs.msg import Image
+from cv_bridge import CvBridge, CvBridgeError
+
+rospy.init_node('VideoPublisher', anonymous=True)
+VideoRaw = rospy.Publisher('VideoRaw', Image, queue_size=10)
   
   
 # define a video capture object
 vid = cv2.VideoCapture(0)
   
-while(True):
-      
+while rospy.is_shutdown():      
     # Capture the video frame
     # by frame
     ret, frame = vid.read()
 
-    frame2 = cv2.flip(frame, 1)
+    frame = cv2.flip(frame, 1)
 
-      
-    # the 'q' button is set as the
-    # quitting button you may use any
-    # desired button of your choice
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
-  
-# After the loop release the cap object
-vid.release()
-# Destroy all the windows
-cv2.destroyAllWindows()
+    msg_frame = CvBridge().cv2_to_imgmsg(frame)
+
+    VideoRaw.publish(msg_frame, "RGB8")
