@@ -39,6 +39,25 @@ trackZ = []
 
 global largoBr
 largoBr = 80
+
+def arriba():
+    angulosActuales("b",1,10,10,10)
+    angulosActuales("c",-1,10,10,10)
+
+def abajo():
+    angulosActuales("b",-1,10,10,10)
+    angulosActuales("c",1,10,10,10)
+
+def adelante():
+    angulosActuales("b",1,10,10,10)
+    angulosActuales("c",1,10,10,10)
+
+def atras():
+    angulosActuales("b",-1,10,10,10)
+    angulosActuales("c",-1,10,10,10)
+
+
+
 def radioDeAng(angleB, angleC):
     angleB=40
     angleC=130
@@ -136,6 +155,18 @@ def angulosActuales(motor,dire,difA,difB,difC):
         if angulo > 180:
             angulo =180
         ActualC=angulo
+    if motor=='i':
+        arriba()
+    if motor=='k':
+        abajo()
+    if motor=='j':
+        adelante()
+    if motor=='l':
+        atras()
+    if motor=='o':
+        abrir()
+    if motor=='p':
+        cerrar()
     print(ActualB)
     print(ActualC)
     global radio
