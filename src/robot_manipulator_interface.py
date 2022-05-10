@@ -73,13 +73,13 @@ def radioDeAng(angleB, angleC):
 
 
     #angulo B
-    angleBcorr = angleB-15
+    angleD= (angleB+70)-(180-angleC)
 
-    angleCcorr = abs(angleC-180)
+    angleCcorr = 180-angleC
 
     distx1 = largoBr*math.cos(math.radians(angleCcorr))
 
-    distx2 = largoBr*math.sin(math.radians(angleBcorr/2))
+    distx2 = largoBr*math.sin(math.radians(angleD/2))
 
     distxT = distx1 + distx2
 
@@ -95,10 +95,10 @@ def alturaDeAng(angleB, angleC):
 
 
     #angulo B
-    angleBcorr = angleB-15
-    angleCcorr = abs(angleC-180)
-    disty1 = largoBr*(math.radians(angleCcorr))
-    disty2 = largoBr*(math.radians(angleBcorr/2))
+    angleD= (angleB+70)-(180-angleC)
+    angleCcorr = 180-angleC
+    disty1 = largoBr*math.sin(math.radians(angleCcorr))
+    disty2 = largoBr*math.cos(math.radians(angleD/2))
     distyT = disty1 - disty2
     return distyT
 def callback_read(data):
@@ -188,6 +188,8 @@ def angulosActuales(motor,dire,difA,difB,difC):
 
     trackX.append(posx)
     trackY.append(posy)
+    trackZ.append(posz)
+    
     pos_array = [posx, posy]
 
 
@@ -206,6 +208,7 @@ def animate(i, trackX, trackY):
     if True:
         ax.plot(trackX[-1], trackY[-1], color='r', marker='*')
     ax.plot(trackX, trackY, color='b')
+    
 
 def save_plot():
     title = title_input.get()
