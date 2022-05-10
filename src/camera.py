@@ -17,7 +17,7 @@ def talker():
 
     while not rospy.is_shutdown():
         ret, frame = cap.read()
-        frame_small = cv2.resize(frame, (480,480), fx=0,fy=0,interpolation=cv2.INTER_CUBIC())
+        frame_small = cv2.resize(frame, (120,120), fx=0,fy=0,interpolation=cv2.INTER_CUBIC())
         if not ret:
             break
         msg = bridge.cv2_to_imgmsg(frame_small, "bgr8")
