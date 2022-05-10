@@ -94,9 +94,9 @@ def atras():
     moveMotor("b",-1,10,10,10)
     moveMotor("c",-1,10,10,10)
 def abrir():
-    servoD.value=convertirAngulo(30)
+    servoD.value=convertirAngulo(20)
 def cerrar():
-    servoD.value=convertirAngulo(0)
+    servoD.value=convertirAngulo(50)
 
 def convertirAngulo(angulo):
 
