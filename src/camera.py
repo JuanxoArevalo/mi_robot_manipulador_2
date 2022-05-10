@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import cv2
 import rospy
@@ -14,7 +14,7 @@ def talker():
     rospy.init_node('camera', anonymous=False)
     rate = rospy.Rate(10)
 
-    while not rospy.rospy.is_shutdown():
+    while not rospy.is_shutdown():
         ret, frame = cap.read()
         if not ret:
             break
