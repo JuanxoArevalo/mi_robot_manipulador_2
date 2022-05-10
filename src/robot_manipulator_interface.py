@@ -18,6 +18,9 @@ global difB
 global difC
 global difD
 
+global radio
+global z
+
 global ActualA
 global ActualB
 global ActualC
@@ -59,9 +62,8 @@ def atras():
 
 
 def radioDeAng(angleB, angleC):
-    angleB=40
-    angleC=130
-    largoBr=80
+  
+  
     global distx1
     distx1 = 0
     global distx2
@@ -124,6 +126,7 @@ def angulosActuales(motor,dire,difA,difB,difC):
     global ActualB
     global ActualC
     global pos
+    
     if motor== 'a':
         angulo=ActualA+dire*(difA)
 
@@ -169,10 +172,10 @@ def angulosActuales(motor,dire,difA,difB,difC):
         cerrar()
     print(ActualB)
     print(ActualC)
-    global radio
-    global z
+
     radio = radioDeAng(int(ActualB), int(ActualC))
     z = alturaDeAng(int(ActualB), int(ActualC))
+
     
     pos = [ActualA, radio, z]
     print(pos)
@@ -201,8 +204,8 @@ def animate(i, trackX, trackY):
     
     ax.clear()
     if True:
-        ax.scatter(trackX[-1], trackY[-1], color='r', marker='*')
-    ax.scatter(trackX, trackY, color='b')
+        ax.plot(trackX[-1], trackY[-1], color='r', marker='*')
+    ax.plot(trackX, trackY, color='b')
 
 def save_plot():
     title = title_input.get()
