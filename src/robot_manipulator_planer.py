@@ -62,7 +62,7 @@ def convertirAngulo(angulo):
 
 def convertirAnguloB(angulo):
 
-    if angulo < 40:
+    if angulo < 20:
         angulo =40
     if angulo > 150:
         angulo =150    
