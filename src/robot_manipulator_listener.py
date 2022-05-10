@@ -158,9 +158,9 @@ def moveMotor(motor,dire,difA,difB,difC):
         angulo=ActualD+dire*(difD)
 
 
-        if angulo < 90:
-            angulo =90
-        if angulo > 90:
+        if angulo < 0:
+            angulo =0
+        if angulo > 180:
             angulo =180
         ActualD=angulo
         print("angulo D:")
