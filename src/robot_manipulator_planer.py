@@ -86,21 +86,21 @@ def convertirAnguloC(angulo):
 
 def principal():
 
-    print("Objetivo")
-    goal=input("x,y,theta").split(',')
-    
-    x=float(goal[0])
-    th=int(goal[2])
-    y=float(goal[1])
-
-    set_pose2(x,y,th)
-
     rospy.init_node('robot_manipulator_planer', anonymous=True)
     pub = rospy.Publisher('/robot_manipulator_goal', String, queue_size=10)
-    rate = rospy.Rate(10) #10Hz
+    rate = rospy.Rate(1000) #10Hz
 
 
     while not rospy.is_shutdown():
+        print("Objetivo")
+        goal=input("x,y,theta \n").split(',')
+
+        x=float(goal[0])
+        th=int(goal[2])
+        y=float(goal[1])
+        msg.data=goal
+
+        set_pose2(x,y,th)
         pub.publish(msg)
         rate.sleep()
 
