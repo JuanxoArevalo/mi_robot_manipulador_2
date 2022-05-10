@@ -173,7 +173,7 @@ def angulosActuales(motor,dire,difA,difB,difC):
     global z
     radio = radioDeAng(int(ActualB), int(ActualC))
     z = alturaDeAng(int(ActualB), int(ActualC))
-
+    
     pos = [ActualA, radio, z]
     print(pos)
     #print(pos)
@@ -198,8 +198,9 @@ def cil2cart(r, angle, z):
 #Funciones para graficar
 def animate(i, trackX, trackY):
     # Draw x and y lists
+    
     ax.clear()
-    if trackX:
+    if True:
         ax.scatter(trackX[-1], trackY[-1], color='r', marker='*')
     ax.scatter(trackX, trackY, color='b')
 
@@ -240,13 +241,13 @@ if __name__ == '__main__':
     title_input.place(x=75,rely=0.1)
     save_btn = Tk.Button(master = root,
                         height=2,
-                        width=80,
+                        width=80,   
                         command=save_plot,
                         text='Save')
     save_btn.place(relx=0.1, rely=0.95)
 
     # Set up plot to call animate() function periodically
-    ani = animation.FuncAnimation(fig, animate, fargs=(trackX, trackY), interval=0)
+    ani = animation.FuncAnimation(fig, animate, fargs=(trackX, trackY), interval=1)
 
 
     Tk.mainloop()
