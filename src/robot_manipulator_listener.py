@@ -93,6 +93,10 @@ def adelante():
 def atras():
     moveMotor("b",-1,10,10,10)
     moveMotor("c",-1,10,10,10)
+def abrir():
+    servoD.value=convertirAngulo(30)
+def cerrar():
+    servoD.value=convertirAngulo(0)
 
 def convertirAngulo(angulo):
 
@@ -174,6 +178,10 @@ def moveMotor(motor,dire,difA,difB,difC):
         adelante()
     if motor=='l':
         atras()
+    if motor=='o':
+        abrir()
+    if motor=='p':
+        cerrar()
 def inicio():
     servoA.value=convertirAngulo(ActualA)
     servoB.value=convertirAngulo(ActualB)
