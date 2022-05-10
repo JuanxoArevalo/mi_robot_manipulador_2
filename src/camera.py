@@ -1,24 +1,33 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 import cv2
 import rospy
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
 
-rospy.init_node('VideoPublisher', anonymous=True)
-VideoRaw = rospy.Publisher('VideoRaw', Image, queue_size=10)
-  
-  
-# define a video capture object
-vid = cv2.VideoCapture(0)
-  
-while rospy.is_shutdown():      
-    # Capture the video frame
-    # by frame
-    ret, frame = vid.read()
+cap = cv2.VideoCapture(0)
+print(cap.isOpened())
+bridge = CvBridge()
 
-    frame = cv2.flip(frame, 1)
+def talker():
+    pub = rospy.Publisher('/vision', Image, queue_size=1)
+    rospy.init_node('camera', anonymous=False)
+    rate = rospy.Rate(10)
 
-    msg_frame = CvBridge().cv2_to_imgmsg(frame)
+    while not rospy.rospy.is_shutdown():
+        ret, frame = cap.read()
+        if not ret:
+            break
+        msg = bridge.cv2_to_imgmsg(frame, "bgr8")
+        pub.publish(msg)
 
-    VideoRaw.publish(msg_frame, "RGB8")
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
+        if rospy.is_shutdown():
+            cap.release()
+if __name__ == '__main__':
+    try:
+        talker()
+    except rospy.ROSInterruptException:
+        pass
