@@ -32,16 +32,18 @@ servoD = Servo(myGPIO4,min_pulse_width=minPW,max_pulse_width=maxPW)
 
 def set_pose2(x,y,th):
     
-    c=((x**2)+(y**2)-128)/(128)
-    print(c)
+    cc=((x**2)+(y**2)-128)/(128)
+
+#print(c)
     q2=-1*np.arccos(c)
     
-    d=(8*np.sin(q2)*q2)/(8+8*np.cos(q2)*q2)
+    d=(8*np.sin(q2))/(8+8*np.cos(q2)*q2)
     q1=np.arctan(y/x)+np.arctan(d)
 
-
-    anguloB=math.degrees(q2)+180
-    anguloC=math.degrees(q1)+60
+#print(q1)
+#print(q2)
+    anguloB=180-(math.degrees(q1)+90)
+    anguloC=(anguloB+(math.degrees(q2)))+15
 
     print(anguloB)
     print(anguloC)
