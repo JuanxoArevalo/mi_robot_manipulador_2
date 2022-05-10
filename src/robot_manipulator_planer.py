@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from posixpath import split
+from socket import MsgFlag
 import rospy
 from geometry_msgs.msg import Twist
 from std_msgs.msg import String
@@ -18,6 +19,9 @@ myGPIO4=7
 
 global maxPW
 global minPW
+global msg
+
+msg=String()
 
 myCorrection=0.45
 maxPW=(2.0+myCorrection)/1000
@@ -80,12 +84,28 @@ def convertirAnguloC(angulo):
 
 
 
-while True:
+def principal():
 
     print("Objetivo")
     goal=input("x,y,theta").split(',')
+    
     x=float(goal[0])
     th=int(goal[2])
     y=float(goal[1])
 
     set_pose2(x,y,th)
+
+    rospy.init_node('robot_manipulator_planer', anonymous=True)
+    pub = rospy.Publisher('/robot_manipulator_goal', String, queue_size=10)
+    rate = rospy.Rate(10) #10Hz
+
+
+    while not rospy.is_shutdown():
+        pub.publish(msg)
+        rate.sleep()
+
+if __name__ == '__main__':
+    try:
+        principal()
+    except rospy.ROSInterruptException:
+        pass

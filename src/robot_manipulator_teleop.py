@@ -60,6 +60,11 @@ def key_press(key):
             #getPos()
         elif key.name == "l":
             msg.data = str(dire)+",l"+','+str(velA)+','+str(velB)+','+str(velC)
+        elif key.name == "o":
+            msg.data = str(dire)+",o"+','+str(velA)+','+str(velB)+','+str(velC)
+            #getPos()
+        elif key.name == "p":
+            msg.data = str(dire)+",p"+','+str(velA)+','+str(velB)+','+str(velC)
             #getPos()
         
 
@@ -80,6 +85,10 @@ def key_press(key):
             msg.data="0,0,0,0,0"
         elif key.name == "l":
             msg.data="0,0,0,0,0"
+        elif key.name == "o":
+            msg.data="0,0,0,0,0"
+        elif key.name == "p":
+            msg.data="0,0,0,0,0"            
         elif key.name == "r":
             dire=dire
 
