@@ -32,7 +32,8 @@ servoD = Servo(myGPIO4,min_pulse_width=minPW,max_pulse_width=maxPW)
 
 def set_pose2(x,y,th):
     
-    cc=((x**2)+(y**2)-128)/(128)
+    print('ver')
+    c=((x**2)+(y**2)-128)/(128)
 
 #print(c)
     q2=-1*np.arccos(c)
