@@ -16,9 +16,10 @@ def talker():
 
     while not rospy.is_shutdown():
         ret, frame = cap.read()
+        frame_small = cv2.resize(frame, (480,480))
         if not ret:
             break
-        msg = bridge.cv2_to_imgmsg(frame, "bgr8")
+        msg = bridge.cv2_to_imgmsg(frame_small, "bgr8")
         pub.publish(msg)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
