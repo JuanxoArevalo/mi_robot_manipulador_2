@@ -44,7 +44,7 @@ def set_pose2(x,y,th):
 #print(q1)
 #print(q2)
     anguloC=180-(math.degrees(q1)+90)
-    anguloB=(anguloB+(math.degrees(q2)))-112
+    anguloB=(anguloC+(math.degrees(q2)))-112
 
     print(anguloB)
     print(anguloC)
