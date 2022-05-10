@@ -49,8 +49,8 @@ def set_pose2(x,y,th):
     print(anguloB)
     print(anguloC)
 
-    servoB.value=convertirAnguloB(anguloB)
-    servoC.value=convertirAnguloC(anguloC)
+    servoB.value=convertirAnguloB(anguloC)
+    servoC.value=convertirAnguloC(anguloB)
     servoA.value=convertirAngulo(th)
 
 
