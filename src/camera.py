@@ -3,6 +3,7 @@
 import cv2
 import rospy
 from sensor_msgs.msg import Image
+from cv_bridge import CvBridge, CvBridgeError
 
 rospy.init_node('VideoPublisher', anonymous=True)
 VideoRaw = rospy.Publisher('VideoRaw', Image, queue_size=10)
@@ -17,4 +18,7 @@ while rospy.is_shutdown():
     ret, frame = vid.read()
 
     frame = cv2.flip(frame, 1)
-    VideoRaw.publish(frame, "RGB8")
+
+    msg_frame = CvBridge().cv2_to_imgmsg(frame)
+
+    VideoRaw.publish(msg_frame, "RGB8")
